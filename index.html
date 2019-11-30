@@ -23,12 +23,14 @@
                 ></todo-list>
             </div>
         </div>
-        <add-todolist
-            v-on:addtodo="addTodo"
-            id="footer"
-        >
-            <p class="show-length">您的待办列表共有: {{ showLength }} 件事项</p>
-        </add-todolist>
+        <div id="footer">
+            <add-todolist
+                v-on:addtodo="addTodo"
+                id="footer"
+            >
+                <p class="show-length">待办列表共有: {{ countList }}项， 其中{{ countUnfinished }}件未完成</p>
+            </add-todolist>
+        </div>
     </div>
 
     <script src="todolist.js"></script>

@@ -22,7 +22,7 @@ body {
 
 #content {
     width: 100%;
-    height: 500px;
+    height: calc(100vh - 250px);
     font-size: 15px;
     overflow: scroll;
     overflow-x: hidden;
@@ -56,7 +56,6 @@ body {
 }
 
 .del-button {
-
     position: absolute;
     top: 50%;
     right: 10px;
@@ -64,28 +63,36 @@ body {
 }
 
 #footer {
-
+    width: 100%;
+    height: 150px;
+    padding: 5px 0;
 }
 
 .addlist-input {
     display: block;
     width: 100%;
     box-sizing: border-box;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
+    border: none;
+    padding-left: 10px;
 }
 
 .addlist-btn {
     width:100%;
     margin-top: 10px;
     border-radius: 5px;
-    height: 30px;
+    height: 40px;
     font-size: 15px;
     font-weight: bold;
+    color: white;
+    background-color: #7D3C98;
+    border: none;
 }
 
 .show-length {
     color: white;
     text-align: center;
+    font-size: 18px;
 }
 

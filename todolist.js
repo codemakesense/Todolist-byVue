@@ -1,7 +1,7 @@
 // 全局注册 todo-list 组件
 Vue.component("todo-list", {
     // 传入app模块的list数组和deltodo方法
-    props: ["list", "deltodo" ],
+    props: ["list", "deltodo"],
     // 初始化待办事项是否可见的checkbox的属性，ischecked
     data: function () {
         return {
@@ -35,8 +35,10 @@ Vue.component("todo-list", {
         getCheckedValue (checked) {
             if (checked == true) {
                 this.ischecked = true
+                this.list.isfinished = true
             } else if (checked == false) {
                 this.ischecked = false
+                this.list.isfinished = false
             }
         },
     }
@@ -62,7 +64,7 @@ Vue.component("add-todolist", {
             <button 
                 v-on:click="pushTodolist"
                 class="addlist-btn"
-            >添加到待办事项</button>
+            >+ 添加到待办事项</button>
             <slot></slot>
         </div>
         ` ,
@@ -91,11 +93,11 @@ var todoContent = new Vue({
     // 初始化一些变量
     data: {
         todoLists: [
-            {key: 0, index: 0, title: "定一个写Vue应用的小目标", visible: true },
-            {key: 1, index: 1, title: "定一个晚上12点前睡觉的小目标", visible: true },
-            {key: 2, index: 2, title: "定一个明年2月份前换工作的小目标", visible: true },
-            {key: 3, index: 3, title: "定一个学会Vue、ES6和Node.js技术栈的小目标", visible: true },
-            {key: 4, index: 4, title: "这个应用已经阶段性完成，后面继续调试即可", visible: true },
+            {key: 0, index: 0, title: "定一个写Vue应用的小目标", visible: true, isfinished: false },
+            {key: 1, index: 1, title: "定一个晚上12点前睡觉的小目标", visible: true, isfinished: false },
+            {key: 2, index: 2, title: "定一个明年2月份前换工作的小目标", visible: true, isfinished: false },
+            {key: 3, index: 3, title: "定一个学会Vue、ES6和Node.js技术栈的小目标", visible: true, isfinished: false },
+            {key: 4, index: 4, title: "这个应用已经阶段性完成，后面继续调试即可", visible: true, isfinished: false },
         ],
         newTodo: "",    // 接收输入框的新待办事项
         deleteIndex: Number // 定义删除事项在数组的序号的变量类型
@@ -120,16 +122,25 @@ var todoContent = new Vue({
                 // 为空则提出提示
                 alert("请输入有效的待办事项")
               // 插入到数组中，同时将key和index按数组长度顺序赋值  
-            } else this.todoLists.push({key: this.todoLists.length, index: this.todoLists.length, title: addItem, visible: true, isfinish: false})
+            } else this.todoLists.push({key: this.todoLists.length, index: this.todoLists.length, title: addItem, visible: true, isfinished: false})
         },
         
     },
 
     computed: {
         // 实时统计数组中待办项的总数
-        showLength: function () {
-            var countLists = this.todoLists.length
-            return countLists
+        countList: function () {
+            var count = this.todoLists.length
+            return count
         },
+        countUnfinished () {
+            var count = 0
+            for (let i = 0; i < this.todoLists.length; i++) {
+                if (this.todoLists[i].isfinished == false) {
+                    count = count + 1
+                }
+            }
+            return count
+        }
     }
 })
