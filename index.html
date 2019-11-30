@@ -10,20 +10,26 @@
 </head>
 <body>
     <div id="todolist-app">
-
-        <todo-list
-            v-for="todo in todoLists"
-            v-bind:key="todo.key"
-            v-bind:list="todo"
-            v-bind:deltodo="deleteTodo"
-        ></todo-list>
+        <div id="header">
+            <h2 class="header-text">工作</h2>
+        </div>
+        <div id="content">
+            <div id="content-list-area">
+                <todo-list
+                    v-for="todo in todoLists"
+                    v-bind:key="todo.key"
+                    v-bind:list="todo"
+                    v-bind:deltodo="deleteTodo"
+                ></todo-list>
+            </div>
+        </div>
         <add-todolist
             v-on:addtodo="addTodo"
+            id="footer"
         >
-            <p>您的待办列表共有: {{ showLength }} 件事项</p>
+            <p class="show-length">您的待办列表共有: {{ showLength }} 件事项</p>
         </add-todolist>
     </div>
-
 
     <script src="todolist.js"></script>
 </body>

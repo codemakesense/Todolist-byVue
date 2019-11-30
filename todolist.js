@@ -13,14 +13,21 @@ Vue.component("todo-list", {
     // 将list.title所在的span元素的class是否生效为与ischecked关联，
     // 点击删除按钮时调用Vue实例中的deltodo方法并传入两个参数，当前的list以及对应的list.index
     template: `
-        <div>
-            <input type="checkbox"
-                v-on:click="getCheckedValue($event.target.checked)"
-            >
-            <span v-bind:class="{ 'todo-list-dec': ischecked }">{{ list.title }}</span>
-            <button 
-                v-on:click="deltodo(list, list.index)"
-            >删除</button>
+        <div class="content-list">
+            <div class="finish-input">
+                <input type="checkbox"
+                    v-on:click="getCheckedValue($event.target.checked)"
+                >
+            </div>
+            <div
+                v-bind:class="{ 'todo-list-fin': ischecked }"
+                class="todo-list"
+            >{{ list.title }}</div>
+            <div class="del-button">
+                <button
+                    v-on:click="deltodo(list, list.index)"
+                >删除</button>
+            </div>
         </div>
     `,
     methods: {
@@ -50,9 +57,11 @@ Vue.component("add-todolist", {
                 v-bind:value="inputValue"
                 v-on:input="inputValue = $event.target.value"
                 v-on:keyup.enter="pushTodolist"
+                class="addlist-input"
             >
             <button 
                 v-on:click="pushTodolist"
+                class="addlist-btn"
             >添加到待办事项</button>
             <slot></slot>
         </div>
