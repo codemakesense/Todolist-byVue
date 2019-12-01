@@ -16,8 +16,26 @@ body {
     border-radius: 5px;
 }
 
-.header-text {
+.tab-button {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    background-color: #ABB2B9;
+}
+
+.tab-button.active {
+    background-color: #7D3C98;
+    border: none;
     color: white;
+    font-weight: bold;
 }
 
 #content {
@@ -83,7 +101,7 @@ body {
     margin-top: 10px;
     border-radius: 5px;
     height: 40px;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     color: white;
     background-color: #7D3C98;

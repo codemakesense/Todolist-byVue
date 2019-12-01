@@ -11,24 +11,30 @@
 <body>
     <div id="todolist-app">
         <div id="header">
-            <h2 class="header-text">工作</h2>
+            <button
+                v-for="tab in tabs"
+                v-bind:key="tab.type"
+                v-on:click="currentTab = tab.type"
+                v-bind:class="['tab-button', { active: currentTab === tab.type }]"
+            >{{ tab.name }}</button>
         </div>
         <div id="content">
-            <div id="content-list-area">
-                <todo-list
-                    v-for="todo in todoLists"
-                    v-bind:key="todo.key"
-                    v-bind:list="todo"
-                    v-bind:deltodo="deleteTodo"
-                ></todo-list>
-            </div>
+            <component
+                v-for="todo in getTypeLists"
+                v-bind:key="todo.key"
+                v-bind:list="todo"
+                v-bind:deltodo="deleteTodo"
+                v-bind:is="currentTabComponent"
+            >
+            </component>
         </div>
+
         <div id="footer">
             <add-todolist
                 v-on:addtodo="addTodo"
                 id="footer"
             >
-                <p class="show-length">待办列表共有: {{ countList }}项， 其中{{ countUnfinished }}件未完成</p>
+                <p class="show-length">当前待办列表共有: {{ countList }}项， 其中{{ countUnfinished }}件未完成</p>
             </add-todolist>
         </div>
     </div>
